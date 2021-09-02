@@ -14,6 +14,10 @@ import javafx.collections.ListChangeListener.Change;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
@@ -62,7 +66,9 @@ public class MainController {
 	@FXML
 	private ListView<String> categoryList;
 	
-
+	@FXML
+    private BarChart<?, ?> barChart;
+    
 
 	@FXML
 	public void initialize() {
@@ -107,6 +113,7 @@ public class MainController {
 		reAppliquerFitre();
 		
 		prepareBoard();
+		prepareBarChart();
 	}
 
 /*	public void prepareBoard() {
@@ -257,5 +264,35 @@ public class MainController {
 		alert.show();
 		// System.exit(0);
 	}
+	
+	public void prepareBarChart() {
+		barChart.getXAxis().setLabel("Albums");
+		barChart.getYAxis().setLabel("Visits");
+		barChart.getData().clear();
+		XYChart.Series dataSeries1 = new XYChart.Series();
+		dataSeries1.setName("2014");
+
+		String category = categoryList.getSelectionModel().getSelectedItem();
+		if ("<Tous>".equals(category)) {
+			category = null;
+		}
+		String singer = chanteurFilter.getSelectionModel().getSelectedItem();
+		if ("<Tous>".equals(singer)) {
+			singer = null;
+		}
+		String year = anneeFilter.getSelectionModel().getSelectedItem();
+		Integer yearInt = (year == null || year.equals("<Tous>")) ? null : Integer.parseInt(year);
+		List<Album> theAlbums = service.findAlbums(yearInt, category, singer);
+
+		for (Album album : theAlbums) {
+			dataSeries1.getData().add(new XYChart.Data(album.getTitle(), (int)(Math.random()*200)));
+		}
+		barChart.getData().add(dataSeries1);
+	}
+	
+	
+	
+	
+	
 
 }
