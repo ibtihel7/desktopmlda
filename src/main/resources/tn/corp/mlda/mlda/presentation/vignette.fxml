@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="165.0" prefWidth="139.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <ImageView fx:id="image" fitHeight="111.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@image.png" />
+         </image>
+      </ImageView>
+   </center>
+   <bottom>
+      <VBox prefHeight="80.0" prefWidth="139.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="title" alignment="CENTER" prefHeight="34.0" prefWidth="139.0" text="Il était une fois">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+            <Label fx:id="description" alignment="CENTER" prefHeight="40.0" prefWidth="139.0" text="Une Chanson Pas comme les Autres" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>
