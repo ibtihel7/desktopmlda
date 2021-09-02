@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.util.Duration;
 
 import javafx.animation.Animation;
+import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
@@ -146,8 +147,8 @@ public class MainController {
 		tr.setDuration(Duration.seconds(3));
 		tr.setAutoReverse(true);
 		tr.setCycleCount(Animation.INDEFINITE);
-		tr.setToX(30);
-		tr.setNode(musicBox);
+		tr.setToY(30);
+		tr.setNode(board);
 		tr.play();
 		
 	}
@@ -184,24 +185,20 @@ public class MainController {
 		iv.setFitWidth(64);
 		title.setText(a.getTitle());
 		description.setText(a.getDescription());
+	
 		
-		RotateTransition rotation = new  RotateTransition (Duration.seconds(0.5),control);
+		RotateTransition rotation = new  RotateTransition (Duration.seconds(0.5),bp);
 		rotation.setCycleCount(Animation.INDEFINITE);
 		rotation.setByAngle(360);
-		control.setOnMouseEntered(e-> rotation.playFromstart());
-		control.setOnMouseExited( e->
+		bp.setOnMouseEntered(e-> rotation.playFromStart());
+		bp.setOnMouseExited( e->
 				{
-					control.setRotate(0);
+					iv.setRotate(0);
 					rotation.pause();
 				}
 				
 				
 				);
-		return control;
-		
-		
-		
-		
 		return bp;
 		
 	
